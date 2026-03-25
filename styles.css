@@ -14,6 +14,7 @@
   --secondary: #00f0ff;
   --text: #ffffff;
   --text-dim: #a0b0cc;
+  --transition: #d97706;
 }
 
 html {
@@ -224,7 +225,7 @@ nav.scrolled {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--void);
-  background: linear-gradient(90deg, var(--accent), var(--void));
+  background: linear-gradient(135deg, var(--accent), var(--transition));
   border-radius: 10px;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
@@ -492,7 +493,7 @@ section {
 .card-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--accent), rgba(99, 102, 241, 0.3));
+  background: linear-gradient(135deg, var(--accent), var(--transition));
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -558,7 +559,7 @@ section {
 .feature-icon {
   width: 24px;
   height: 24px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--transition));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -649,13 +650,14 @@ section {
   transform: translateX(-50%);
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  background: linear-gradient(135deg, var(--accent), var(--transition));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 1.1rem;
+  color: black;
 }
 
 .step h3 {
@@ -715,7 +717,7 @@ section {
 }
 
 .zkill-btn {
-  background: linear-gradient(135deg, var(--secondary), #d97706);
+  background: linear-gradient(135deg, var(--secondary), var(--transition));
   color: var(--void);
 }
 
