@@ -824,21 +824,23 @@ footer {
 
   .nav-links.active {
     display: flex;
-    position: static;
+    position: absolute;
     transform: none;
-    top: auto;
-    left: auto;
-    right: auto;
-    background: transparent;
-    padding: 1rem 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(3, 3, 10, 0.98);
+    padding: 1rem 1.5rem;
     gap: 1rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 1001;
   }
 
   .mobile-toggle {
     display: flex;
+    z-index: 1002;
   }
 
   .nav-cta {

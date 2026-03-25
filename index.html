@@ -32,7 +32,7 @@
                 <span class="tool-label">Wanderer</span>
             </a>
         </div>
-        <div class="mobile-toggle" onclick="toggleNav()">
+        <div class="mobile-toggle" role="button" aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
             <span></span>
             <span></span>
             <span></span>
@@ -212,52 +212,42 @@
     </footer>
 
     <script>
-        // Navigation scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile navigation toggle
-        function toggleNav() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-
-        // Console greeting
-        console.log('%c🚀 HOLIER THAN THOU — fly dangerous o7', 'color:#6366f1; font-size:14px; font-weight:600;');
-
-        // Navigation + mobile toggle + scroll effect
         (function(){
             const navbar = document.getElementById('navbar');
             const navLinks = document.getElementById('navLinks');
             const mobileToggle = document.querySelector('.mobile-toggle');
 
-            function toggleNav(){
-                navLinks.classList.toggle('active');
+            // Scroll effect
+            function handleScroll() {
+                if (window.scrollY > 20) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
             }
 
-            if(mobileToggle) mobileToggle.addEventListener('click', toggleNav);
+            window.addEventListener('scroll', handleScroll);
+
+            // Toggle nav open/close and keep ARIA in sync
+            function toggleNav(){
+                const isActive = navLinks.classList.toggle('active');
+                if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(isActive));
+            }
+
+            // Attach click and keyboard handlers to the toggle
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', toggleNav);
+                mobileToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleNav();
+                    }
+                });
+            }
 
             // Close mobile nav when a link is clicked
             document.querySelectorAll('.nav-links a').forEach(a => {
-                a.addEventListener('click', () => navLinks.classList.remove('active'));
-            });
-
-            // Scroll effect
-            window.addEventListener('scroll', () => {
-                if(window.scrollY > 20) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
+                a.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+                });
             });
 
             // Friendly console greeting
