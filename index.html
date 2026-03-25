@@ -193,7 +193,7 @@
             <h2 class="section-title">Recent Activity</h2>
 
             <div class="activity-card">
-                <blockquote>"We don't just survive the hole — we own it."</blockquote>
+                <blockquote>"You know what they say- home is where you hang your enemy's head."</blockquote>
                 <p style="color: var(--text-dim); margin-bottom: 2rem;">Active daily. Serious about PVP. Serious about community.</p>
                 <a href="https://zkillboard.com/corporation/98757825/" target="_blank" class="btn zkill-btn">View Kills on zKillboard →</a>
             </div>
@@ -208,6 +208,7 @@
             <a href="https://discord.gg/4hseqHB39t" target="_blank">Discord</a>
             <a href="https://zkillboard.com/corporation/98757825/" target="_blank">zKillboard</a>
             <a href="https://seat.astralaide.com" target="_blank">SeAT</a>
+            <a href="https://maps.astralaide.com" target="_blank">Wanderer</a>
         </div>
     </footer>
 
@@ -229,6 +230,22 @@
             function toggleNav(){
                 const isActive = navLinks.classList.toggle('active');
                 if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(isActive));
+
+                // Place the dropdown directly below the navbar (handles varying nav height)
+                if (isActive) {
+                    const rect = navbar.getBoundingClientRect();
+                    navLinks.style.position = 'fixed';
+                    navLinks.style.top = rect.bottom + 'px';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.zIndex = '1001';
+                } else {
+                    navLinks.style.position = '';
+                    navLinks.style.top = '';
+                    navLinks.style.left = '';
+                    navLinks.style.right = '';
+                    navLinks.style.zIndex = '';
+                }
             }
 
             // Attach click and keyboard handlers to the toggle
@@ -247,7 +264,21 @@
                 a.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+                    // clear any inline positioning set when opened
+                    navLinks.style.position = '';
+                    navLinks.style.top = '';
+                    navLinks.style.left = '';
+                    navLinks.style.right = '';
+                    navLinks.style.zIndex = '';
                 });
+            });
+
+            // Recalculate dropdown position on resize when open
+            window.addEventListener('resize', () => {
+                if (navLinks.classList.contains('active')) {
+                    const rect = navbar.getBoundingClientRect();
+                    navLinks.style.top = rect.bottom + 'px';
+                }
             });
 
             // Friendly console greeting
