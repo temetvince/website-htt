@@ -27,6 +27,7 @@ body {
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
+  text-align: center;
 }
 
 /* Animated starfield background */
@@ -113,13 +114,8 @@ nav.scrolled {
 }
 
 .logo {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 4px;
-  background: linear-gradient(135deg, var(--accent-glow), var(--void));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: flex;
+  align-items: center;
 }
 
 /* Logo image styles */
@@ -191,24 +187,6 @@ nav.scrolled {
     transform: translate(-50%, -50%);
     justify-content: center;
   }
-}
-.nav-cta {
-  padding: 0.6rem 1.5rem;
-  background: var(--accent);
-  color: black;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.nav-cta:hover {
-  background: var(--accent-glow);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
 }
 
 .nav-tools {
@@ -362,17 +340,6 @@ nav.scrolled {
   box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-secondary:hover {
-  border-color: var(--secondary);
-  color: var(--secondary);
-}
-
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -416,6 +383,9 @@ section {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section-label {
@@ -448,13 +418,17 @@ section {
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 2rem;
   margin-top: 4rem;
+  flex-wrap: wrap;
 }
 
 .about-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 550px;
   padding: 2.5rem;
   background: linear-gradient(
     145deg,
@@ -466,6 +440,9 @@ section {
   transition: all 0.4s;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about-card::before {
@@ -510,6 +487,7 @@ section {
 
 .about-card p {
   color: var(--text-dim);
+  font-size: 0.95rem;
   line-height: 1.7;
 }
 
@@ -533,20 +511,22 @@ section {
 }
 
 .hole-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 4rem;
   align-items: center;
+  margin-top: 4rem;
 }
 
 .feature-list {
   list-style: none;
   margin-top: 2rem;
+  padding: 0;
+  width: 100%;
 }
 
 .feature-list li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -557,15 +537,15 @@ section {
 }
 
 .feature-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background: linear-gradient(135deg, var(--accent), var(--transition));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
+  flex: 0 0 20px;
+  margin-top: 0;
 }
 
 .feature-icon::after {
@@ -585,10 +565,17 @@ section {
   font-size: 0.9rem;
 }
 
+/* Keep the icon column fixed left and center the text block */
+.feature-text {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  max-width: 500px;
 }
 
 .stat-card {
@@ -617,7 +604,6 @@ section {
 /* Join Section */
 .join {
   background: linear-gradient(180deg, var(--deep) 0%, var(--void) 100%);
-  text-align: center;
 }
 
 .steps-container {
@@ -631,16 +617,43 @@ section {
 .step {
   flex: 1;
   min-width: 250px;
-  max-width: 320px;
+  max-width: 550px;
   padding: 2.5rem 2rem;
   background: linear-gradient(
     145deg,
-    rgba(18, 18, 31, 0.6),
-    rgba(10, 10, 20, 0.8)
+    rgba(18, 18, 31, 0.8),
+    rgba(10, 10, 20, 0.9)
   );
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.1);
   border-radius: 16px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius: 16px 16px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.step:hover::before {
+  opacity: 1;
 }
 
 .step-number {
@@ -661,7 +674,7 @@ section {
 }
 
 .step h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin: 1rem 0 0.75rem;
 }
@@ -669,6 +682,7 @@ section {
 .step p {
   color: var(--text-dim);
   font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .step a {
@@ -692,7 +706,6 @@ section {
 /* Activity Section */
 .activity {
   background: var(--void);
-  text-align: center;
   padding: 6rem 2rem;
 }
 
@@ -741,17 +754,9 @@ footer {
   background: var(--void);
   border-top: 1px solid rgba(99, 102, 241, 0.1);
   padding: 3rem 2rem;
-  text-align: center;
 }
 
 .footer-logo {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem;
-  letter-spacing: 4px;
-  background: linear-gradient(135deg, var(--accent-glow), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 1rem;
 }
 
@@ -799,22 +804,6 @@ footer {
 }
 
 /* Responsive */
-@media (max-width: 992px) {
-  .about-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hole-content {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .stats-grid {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-}
-
 @media (max-width: 1050px) {
   nav {
     padding: 1rem 1.5rem;
@@ -854,12 +843,8 @@ footer {
     z-index: 1002;
   }
 
-  .nav-cta {
-    display: none;
-  }
-
   .about-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   section {
@@ -868,11 +853,10 @@ footer {
 
   .steps-container {
     flex-direction: column;
-    align-items: center;
   }
 
-  .step {
-    max-width: 100%;
+  .hole-content {
+    flex-direction: column;
   }
 }
 
