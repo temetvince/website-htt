@@ -716,6 +716,17 @@ section {
   margin-bottom: 1.5rem;
 }
 
+/* Citation for quotes inside activity cards: smaller and dimmer */
+.activity-card blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-style: normal;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
 .zkill-btn {
   background: linear-gradient(135deg, var(--secondary), var(--transition));
   color: var(--void);
